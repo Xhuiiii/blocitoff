@@ -1,4 +1,9 @@
 <%= content_tag :li, class: 'list-group-item todo-item-even todo-item-odd', id: "item-#{item.id}" do %>
   <%= item.name %>
   <%= link_to " ", [current_user, item],format: :js, method: :delete, class: 'glyphicon glyphicon-ok pull-right', remote: true %>
+  <div class="text-center-small">
+    <small class="<%= format_days_remaining(item.days_left) %>">
+      <%= item.days_left.to_s. + " days left to complete"  %>
+    </small>
+  </div>
 <% end %>
