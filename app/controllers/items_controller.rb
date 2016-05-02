@@ -8,22 +8,37 @@ class ItemsController < ApplicationController
 	  	if @item.save
 	  		flash[:notice] = "Item was saved."
 
-	  		respond_to do |format|
-  				format.js {render inline: "location.reload();" }
-			end
+     	respond_to do |format|
+	       format.html
+	       format.js
+	     end
 	  	else
 	  		flash.now[:alert] = "There was an error saving the item. Please try again later."
 
-	  		respond_to do |format|
-  				format.js {render inline: "location.reload();" }
-			end	  		
+	  	 respond_to do |format|
+	       format.html
+	       format.js
+	     end 		
 	  	end
 	end
 
 	def destroy
-		@user = User.find(params[:user_id])
 		@item = Item.find(params[:id])
-		@item.destroy
+		if @item.destroy
+			flash[:notice] = "Item was destroyed."
+
+	     respond_to do |format|
+	       format.html
+	       format.js
+	     end
+		else 
+			flash.now[:alert] = "There was an error deleting the item. Please try again."
+
+	     respond_to do |format|
+	       format.html
+	       format.js
+	     end
+		end
 	end
 
 	private 

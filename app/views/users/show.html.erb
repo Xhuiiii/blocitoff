@@ -5,11 +5,7 @@
 	Email: <%= @user.email %><br>
 <% end %>
 Tasks:
-<ul>
-	<% @items.each do |i| %>
-		<li><%= i.name %></li>
-	<% end %>
-</ul>
+<%= render @items %>
 
 <%= render partial: "items/form", locals: {user: @user} %>
 
