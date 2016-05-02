@@ -1,7 +1,15 @@
 <% if @user.username %>
 	Username: <%= @user.username %><br>
-	Email: <%= @user.email %>
+	Email: <%= @user.email %><br>
 <% else %>
-	Email: <%= @user.email %>
+	Email: <%= @user.email %><br>
 <% end %>
+Tasks:
+<ul>
+	<% @items.each do |i| %>
+		<li><%= i.name %></li>
+	<% end %>
+</ul>
+
+<%= render partial: "items/form", locals: {user: @user} %>
 
